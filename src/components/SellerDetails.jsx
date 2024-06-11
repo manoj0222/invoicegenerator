@@ -90,11 +90,11 @@ export default function SellerDetails({onNext, onBack, steps,setData}) {
   };
 
   return (
-    <form>
-      <div className="space-y-12 m-8">
+    <form className="bg-white">
+      <div className="space-y-12 m-8 p-1">
         <div className="pb-12">
           <h1 className="text-base font-semibold text-center leading-7 text-gray-900">
-            Seller Details *
+            Seller Details 
           </h1>
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">

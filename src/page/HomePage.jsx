@@ -24,8 +24,8 @@ const description = [
 export default function HomePage() {
   const [steps, setSteps] = useState(0);
   const [data, setData] = useState({});
-  const navigate = useNavigate(); 
-  
+  const navigate = useNavigate();
+
   const handleNext = () => {
     if (steps === description.length - 1) {
       navigate("/pdfgenerator"); // Navigate to pdfgenerator when the last step is reached
@@ -108,10 +108,13 @@ export default function HomePage() {
 
   console.log(data);
   return (
-    <div className="p-4 flex align-center justify-center">
-      <div className="bg-gray:200 rounded-sm border rounded-xl w-3/4 ">
-        <StatusTracker statusName={description} currentstep={steps} />
-        {detailsForm(steps)}
+    <div className="h-full">
+      <strong className="mb-4 flex items-center justify-center text-2xl">Welcome to Invoice Generator</strong>
+      <div className="p-4 flex align-center justify-center">
+        <div className="bg-gray:200 rounded-sm border-2 rounded-xl w-3/4 px-2 ">
+          <StatusTracker statusName={description} currentstep={steps} />
+          {detailsForm(steps)}
+        </div>
       </div>
     </div>
   );

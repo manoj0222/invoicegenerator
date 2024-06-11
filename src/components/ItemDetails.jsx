@@ -88,7 +88,6 @@ export default function ItemDetails({ onNext,onBack, setData, data }) {
         unitPrice: "",
         quantity: "",
         discount: "",
-        netAmount: "",
         taxRate: "",
         taxType: "",
       },
@@ -100,7 +99,6 @@ export default function ItemDetails({ onNext,onBack, setData, data }) {
         unitPrice: "",
         quantity: "",
         discount: "",
-        netAmount: "",
         taxRate: "",
         taxType: "",
       },
@@ -115,7 +113,7 @@ export default function ItemDetails({ onNext,onBack, setData, data }) {
   };
 
   return (
-    <div className="flex flex-col m-10 ">
+    <div className="flex flex-col m-10">
       <section className="flex justify-between">
         <button
           onClick={handleCreateItem}
@@ -138,7 +136,7 @@ export default function ItemDetails({ onNext,onBack, setData, data }) {
         <form
           key={index}
           onSubmit={(e) => handleSubmit(e, index)}
-          className="p-2 border-2 flex flex-row flex-wrap rounded-md mb-3 shadow-lg"
+          className="p-3 py-4 border-2 flex flex-row flex-wrap rounded-md  mb-3 shadow-lg"
         >
           {/* Description */}
           <section className="w-full p-2">

@@ -2,7 +2,7 @@ import React from "react";
 import { TiTick } from "react-icons/ti";
 export default function StatusTracker({statusName, currentstep }) {
   return (
-    <div className="m-2 p-4 flex justify-between flex-col md:flex-row items-center h-auto">
+    <div className="mb-2 p-4 flex justify-between flex-col md:flex-row items-center h-auto bg-none">
       {statusName.map((Description, index) => {
         return (
           <React.Fragment key={index}>
@@ -18,7 +18,7 @@ export default function StatusTracker({statusName, currentstep }) {
                 {currentstep+1 > index + 1 ? <TiTick /> : index + 1}
               </div>
               {/*Descritpion*/}
-              <div className="absolute top-0 mt-22 font-medium uppercase text-center text-xs -ml-2">
+              <div className="absolute top-2 mt-32 font-medium uppercase text-center text-xs -ml-2 ">
                 {Description}
               </div>
             </div>
@@ -27,7 +27,7 @@ export default function StatusTracker({statusName, currentstep }) {
                 className={
                   currentstep+1 > index + 1
                     ? "flex-grow border-t-2 transition duration-500 ease-in-out border-green-600 mx-1"
-                    : "flex-grow border-t-2 transition duration-500 ease-in-out mx-1"
+                    : "flex-grow border-t-2 transition duration-500 ease-in-out mx-1 "
                 }
               ></div>
             )}

@@ -7,7 +7,7 @@ import {BrowserRouter,Routes,Route} from "react-router-dom";
 function App() {
 
   return (
-    <div className="App py-3 px-3">
+    <div className="App p-4" style={{height:"100vh", scrollBehavior:"smooth"}}>
       <BrowserRouter>
         <Routes>
             <Route path="/" element={<HomePage />}></Route>

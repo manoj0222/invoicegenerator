@@ -1,12 +1,15 @@
 import React, { useRef, useCallback } from "react";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import { numberToWords,extractDate } from "../../utils/util";
+import {
+  numberToWords,
+  extractDate,
+  roundToTwoDecimals,
+} from "../../utils/util";
 import Logo from "./Logo";
 import AddressComponent from "./AddressComponent";
 import signature from "../../assets/signature.png";
-import Brandlogo from "../../assets/Brandlogo.png"
-
+import Brandlogo from "../../assets/Brandlogo.png";
 
 const InvoiceCompany = React.memo(({ company, index }) => {
   const containerRef = useRef();
@@ -42,6 +45,14 @@ const InvoiceCompany = React.memo(({ company, index }) => {
 
   return (
     <>
+      <section className="w-full p-2 flex justify-end">
+        <button
+          className="bg-gray-200 flex items-center justify-center  rounded-xl m-2 p-2"
+          onClick={downloadPdf}
+        >
+          Download PDF
+        </button>
+      </section>
       <div ref={containerRef} className="p-4 border border-black">
         <main className="m-2">
           <section className="flex items-center justify-between p-1">
@@ -109,10 +120,12 @@ const InvoiceCompany = React.memo(({ company, index }) => {
             </article>
             <article className="w-1/2 flex items-end flex-col">
               <p>
-                <strong>Place of Supply:</strong> {company.shippingDetails.state}
+                <strong>Place of Supply:</strong>{" "}
+                {company.shippingDetails.state}
               </p>
               <p>
-                <strong>Place of Delivery:</strong> {company.shippingDetails.state}
+                <strong>Place of Delivery:</strong>{" "}
+                {company.shippingDetails.state}
               </p>
               <p>
                 <strong>Invoice Number:</strong>{" "}
@@ -125,7 +138,7 @@ const InvoiceCompany = React.memo(({ company, index }) => {
               <p>
                 <strong>Invoice Date:</strong>{" "}
                 <time dateTime={company.invoiceDetails.invoiceDate}>
-                {extractDate(company.invoiceDetails.invoiceDate)}
+                  {extractDate(company.invoiceDetails.invoiceDate)}
                 </time>
               </p>
             </article>
@@ -160,22 +173,22 @@ const InvoiceCompany = React.memo(({ company, index }) => {
                     {item.quantity}
                   </td>
                   <td className="border border-black px-2 py-2">
-                    {Math.round(item.unitPrice * item.quantity)}
+                    {roundToTwoDecimals(item.unitPrice * item.quantity)}
                   </td>
                   <td className="border border-black px-2 py-2">
-                    {Math.round(item.taxRate)}%
+                    {roundToTwoDecimals(item.taxRate)}%
                   </td>
                   <td className="border border-black px-2 py-2">
                     {item.taxType}
                   </td>
                   <td className="border border-black px-2 py-2">
-                    {Math.round(
+                    {roundToTwoDecimals(
                       item.unitPrice * item.quantity * (item.taxRate / 100)
                     )}
                   </td>
                   <td className="border border-black px-2 py-2">
-                    {Math.round(item.unitPrice * item.quantity) -
-                      Math.round(
+                    {roundToTwoDecimals(item.unitPrice * item.quantity) -
+                      roundToTwoDecimals(
                         item.unitPrice * item.quantity * (item.taxRate / 100)
                       )}
                   </td>
@@ -190,11 +203,11 @@ const InvoiceCompany = React.memo(({ company, index }) => {
                 </td>
                 <td className="border bg-gray-400 border-black px-3 py-2">
                   {"₹ "}
-                  {Math.round(taxAmountTotal)}
+                  {roundToTwoDecimals(taxAmountTotal)}
                 </td>
                 <td className="border bg-gray-400 border-black px-3 py-2">
                   {"₹ "}
-                  {Math.round(totalAmountTotal)}
+                  {roundToTwoDecimals(totalAmountTotal)}
                 </td>
               </tr>
             </tbody>
@@ -205,13 +218,14 @@ const InvoiceCompany = React.memo(({ company, index }) => {
             Amount In Words:
           </h3>
           <p className="border border-black py-2 px-1">
-            {numberToWords(Math.round(totalAmountTotal))}{" Rupees"}
+            {numberToWords(Math.round(totalAmountTotal))}
+            {" Rupees"}
           </p>
         </section>
         <section className="flex justify-end mb-4">
           <div>
             <h3 className="text-lg font-semibold mb-1">
-              For {company.sellerDetails.name}
+              For {company.sellerDetails.companyName  }
             </h3>
             <img className="w-40 h-10" alt="signature" src={signature} />
             <h3 className="text-lg font-semibold mb-1">Authorized Signatory</h3>
@@ -223,12 +237,6 @@ const InvoiceCompany = React.memo(({ company, index }) => {
           </h4>
         </footer>
       </div>
-      <button
-        className="bg-gray-200 flex items-center justify-center p-2 rounded-xl m-2"
-        onClick={downloadPdf}
-      >
-        Download PDF
-      </button>
     </>
   );
 });

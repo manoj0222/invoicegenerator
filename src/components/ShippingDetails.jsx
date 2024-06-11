@@ -110,11 +110,11 @@ export default function ShippingDetails({ onNext, onBack, steps, setData }) {
   };
 
   return (
-    <form>
+    <form className="bg-white">
       <div className="space-y-12 m-8">
         <div className="pb-12">
           <h1 className="text-base font-semibold text-center leading-7 text-gray-900">
-            Shipping Address *
+            Shipping Address Details
           </h1>
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
@@ -122,7 +122,7 @@ export default function ShippingDetails({ onNext, onBack, steps, setData }) {
                 htmlFor="first-name"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Name *
+                Person Name *
               </label>
               <div className="mt-2">
                 <input

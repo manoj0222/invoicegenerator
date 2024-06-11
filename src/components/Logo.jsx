@@ -46,7 +46,8 @@ export default function Logo({ onNext, steps, onBack, setData }) {
 
   return (
     <>
-      <div className="flex align-center justify-center py-9 w-full border">
+      <strong className="flex justify-center mt-8">Company Logo</strong>
+      <div className="flex align-center justify-center py-9 w-full bg-white mt-1">
         {filePreview ? (
           <img
             src={filePreview}
@@ -70,7 +71,6 @@ export default function Logo({ onNext, steps, onBack, setData }) {
             {error && <p className="text-red-500 mt-2">{error}</p>}
           </section>
         )}
-        {error && <p className="text-red-500 mt-2">{error}</p>}
       </div>
       <FormButtons onClick={handleSubmit} steps={steps} />
     </>
